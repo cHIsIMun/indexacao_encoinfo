@@ -1,0 +1,48 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Buscador</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+        }
+        .form-group {
+            margin: 20px auto;
+            width: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Enco Google</h1>
+        <form action="/" method="post">
+            <div class="form-group">
+                <input type="text" name="query" value="{{ query }}" placeholder="Digite sua consulta" class="form-control">
+                <button type="submit" class="btn btn-primary mt-3">Buscar</button>
+            </div>
+        </form>
+        {% if matches %}
+            <ul class="list-group">
+            {% for match in matches %}
+                <li class="list-group-item">
+                    <a href="{{ match['id'] }}" target="_blank">{{ match['title'] }}</a>, Score: {{ match['score'] }}
+                </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>Nenhum resultado encontrado.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
