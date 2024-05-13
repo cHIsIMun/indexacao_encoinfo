@@ -5,11 +5,12 @@ import requests
 import html
 import numpy as np
 import re
+import os
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 app = Flask(__name__)
 
-pc = Pinecone(api_key='807e9a07-1afe-41c9-85fe-6389609e8540')
+pc = Pinecone(api_key=os.environ('PINECONE_API_KEY'))
 index_name = 'encoinfo'
 index = pc.Index(index_name)
 
